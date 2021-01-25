@@ -1,7 +1,9 @@
 <resources>
     <string name="app_name">Data Breach Prediction</string>
-    <string name="enter_description_of_incident">Enter Description of Incidents separated by \'|\'</string>
+    <string name="hint_description_of_incident">Data Breach Incident</string>
+    <string name="enter_description_of_incident">Enter Descriptions of Data Breach Incidents separated by \'|\'</string>
     <string name="detect">Detect</string>
     <string name="breach_type_placeholder">Breach Type:\n<b>%s!</b></string>
     <string name="error_classification">Classification Error!</string>
+    <string name="error_empty_field">This Field is Empty!</string>
 </resources>

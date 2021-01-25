@@ -28,9 +28,8 @@ class MainViewModel @ViewModelInject constructor(private val apiService: ApiServ
         result
     }
 
-    fun callPredictionApi() {
-        text.value?.let {
-            _breach.value = it
-        }
+    fun callPredictionApi(dataBreach: String) {
+        _breach.value = dataBreach
+
     }
 }

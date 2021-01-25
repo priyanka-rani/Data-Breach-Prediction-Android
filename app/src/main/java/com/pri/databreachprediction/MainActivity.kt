@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.doAfterTextChanged
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.distinctUntilChanged
@@ -24,8 +25,18 @@ class MainActivity : AppCompatActivity() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
         binding.btDetect.setOnClickListener {
-            viewModel.callPredictionApi()
-            hideKeyBoard(it)
+            val dataBreach = viewModel.text.value?.trim()
+            if (dataBreach.isNullOrBlank()) {
+                binding.tilDataBreach.isErrorEnabled = true
+                binding.tilDataBreach.error = getString(R.string.error_empty_field)
+            } else {
+                viewModel.callPredictionApi(dataBreach)
+                hideKeyBoard(it)
+            }
+        }
+        binding.etDataBreach.doAfterTextChanged {
+            binding.tilDataBreach.error = null
+            binding.tilDataBreach.isErrorEnabled = false
         }
         viewModel.prediction.observe(this) {
             it?.let {

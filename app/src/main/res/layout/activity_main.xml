@@ -26,7 +26,7 @@
             tools:context=".MainActivity">
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/tvBreachType"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -42,20 +42,28 @@
                 app:layout_constraintVertical_bias="0.19"
                 tools:text="Breach Tyoe is Hack" />
 
-            <EditText
-                android:id="@+id/editTextTextMultiLine"
-                android:layout_width="wrap_content"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilDataBreach"
+                android:layout_width="0dp"
+                app:boxBackgroundColor="@android:color/transparent"
                 android:layout_height="wrap_content"
-                android:ems="15"
-                android:gravity="start|top"
-                android:hint="@string/enter_description_of_incident"
-                android:inputType="textMultiLine"
-                android:text="@={viewModel.text}"
+                android:hint="@string/hint_description_of_incident"
+                app:placeholderText="@string/enter_description_of_incident"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintWidth_percent=".8"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.18" />
+                app:layout_constraintVertical_bias="0.18" >
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etDataBreach"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="15"
+                    android:gravity="start|top"
+                    android:inputType="textMultiLine"
+                    android:text="@={viewModel.text}"/>
+            </com.google.android.material.textfield.TextInputLayout>
 
             <Button
                 android:id="@+id/btDetect"
@@ -64,9 +72,9 @@
                 android:layout_marginTop="32dp"
                 android:text="@string/detect"
                 android:visibility="@{viewModel.prediction.status == Status.LOADING?View.INVISIBLE:View.VISIBLE}"
-                app:layout_constraintEnd_toEndOf="@+id/editTextTextMultiLine"
-                app:layout_constraintStart_toStartOf="@+id/editTextTextMultiLine"
-                app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine" />
+                app:layout_constraintEnd_toEndOf="@+id/tilDataBreach"
+                app:layout_constraintStart_toStartOf="@+id/tilDataBreach"
+                app:layout_constraintTop_toBottomOf="@+id/tilDataBreach" />
 
             <ProgressBar
                 android:id="@+id/progressBar"
