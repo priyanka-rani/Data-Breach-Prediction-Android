@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="com.pri.databreachprediction.vo.Status" />
+
+        <variable
+            name="viewModel"
+            type="com.pri.databreachprediction.MainViewModel" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/scrollView"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".MainActivity">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:visibility="@{viewModel.prediction.status == Status.LOADING?View.INVISIBLE:View.VISIBLE}"
+                android:text="@{viewModel.breachType}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="@{viewModel.prediction.status==Status.SUCCESS?@color/purple_500:@color/red}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginBottom="32dp"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btDetect"
+                app:layout_constraintVertical_bias="0.19"
+                tools:text="Breach Tyoe is Hack" />
+
+            <EditText
+                android:id="@+id/editTextTextMultiLine"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="15"
+                android:gravity="start|top"
+                android:hint="@string/enter_description_of_incident"
+                android:inputType="textMultiLine"
+                android:text="@={viewModel.text}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.18" />
+
+            <Button
+                android:id="@+id/btDetect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="@string/detect"
+                android:visibility="@{viewModel.prediction.status == Status.LOADING?View.INVISIBLE:View.VISIBLE}"
+                app:layout_constraintEnd_toEndOf="@+id/editTextTextMultiLine"
+                app:layout_constraintStart_toStartOf="@+id/editTextTextMultiLine"
+                app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine" />
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="@{viewModel.prediction.status == Status.LOADING?View.VISIBLE:View.INVISIBLE}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginBottom="32dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btDetect"
+                app:layout_constraintVertical_bias="0.19" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

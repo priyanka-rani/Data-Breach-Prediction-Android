@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Data Breach Prediction</string>
+    <string name="enter_description_of_incident">Enter Description of Incidents separated by \'|\'</string>
+    <string name="detect">Detect</string>
+    <string name="breach_type_placeholder">Breach Type:\n<b>%s!</b></string>
+    <string name="error_classification">Classification Error!</string>
+</resources>
