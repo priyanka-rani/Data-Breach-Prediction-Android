@@ -1,6 +1,5 @@
 package com.pri.databreachprediction
 
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.switchMap
@@ -8,10 +7,13 @@ import androidx.lifecycle.viewModelScope
 import com.pri.databreachprediction.api.ApiService
 import com.pri.databreachprediction.api.RequestModel
 import com.pri.databreachprediction.vo.Resource
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class MainViewModel @ViewModelInject constructor(private val apiService: ApiService) : ViewModel() {
+@HiltViewModel
+class MainViewModel @Inject constructor(private val apiService: ApiService) : ViewModel() {
     val text = MutableLiveData<String>()
     val breachType = MutableLiveData<String>()
     private val _breach = MutableLiveData<String>()
